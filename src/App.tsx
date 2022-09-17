@@ -1,34 +1,16 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Counter from "./components/Counter";
 
 function App() {
   return (
-    <React.Fragment>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+    <div className="container h-100 text-center">
+      <div className="row h-100 justify-content-center align-items-center ">
+        <Counter />
       </div>
-      <div>
-        <i className="fa fa-spinner">font awesome icon</i>
-      </div>
-      <button className="btn btn-primary" >bootstrap button</button>
-    </React.Fragment>
+    </div>
   );
 }
 
