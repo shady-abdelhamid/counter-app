@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 
-function Counter() {
-  const [count, setCount] = useState(0);
+type CounterProps = {
+  count: number;
+  children: any;
+};
+
+function Counter(props: CounterProps) {
+  const [count, setCount] = useState(props.count);
 
   const decrement = () => count > 0 && setCount(count - 1);
   const increment = () => setCount(count + 1);
@@ -18,6 +23,7 @@ function Counter() {
       <button onClick={increment} className="btn btn-secondary btn-sm">
         <i className="fa fa-plus"></i>
       </button>
+      {props.children}
     </div>
   );
 }
