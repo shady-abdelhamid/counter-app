@@ -13,10 +13,15 @@ function Counters() {
     handleCounters([...counters.filter((c) => c.id !== id)]);
   };
 
+  const handleCount = (counter: CounterModel) => {
+    handleCounters([
+      ...counters.map((c) => (c.id === counter.id ? counter : c)),
+    ]);
+  };
   return (
     <>
       {counters?.map((counter: CounterModel) => (
-        <Counter key={counter.id} count={counter.count}>
+        <Counter key={counter.id} counter={{ ...counter, handleCount }}>
           <button
             onClick={() => onDelete(counter.id)}
             className="btn btn-danger btn-sm m-2"

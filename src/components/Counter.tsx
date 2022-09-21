@@ -1,15 +1,26 @@
 import React, { useState } from "react";
+import { Counter as CounterModel } from "../models/counter";
 
 type CounterProps = {
-  count: number;
+  counter: CounterModel;
   children: any;
 };
 
-function Counter(props: CounterProps) {
-  const [count, setCount] = useState(props.count);
+function Counter({ counter, children }: CounterProps) {
+  const [count, setCount] = useState(counter.count);
 
-  const decrement = () => count > 0 && setCount(count - 1);
-  const increment = () => setCount(count + 1);
+  const decrement = () => {
+    if (count > 0) {
+      setCount(count - 1);
+      counter?.handleCount({ id: counter?.id, count: count - 1 });
+    }
+  };
+
+  const increment = () => {
+    setCount(count + 1);
+    counter?.handleCount({ id: counter?.id, count: count + 1 });
+  };
+
   const transformCount = () => (count === 0 ? "Zero" : count);
   const getBadgeClasses = () =>
     `badge m-2 p-2 text-bg-${count === 0 ? "warning" : "primary"}`;
@@ -23,7 +34,7 @@ function Counter(props: CounterProps) {
       <button onClick={increment} className="btn btn-secondary btn-sm">
         <i className="fa fa-plus"></i>
       </button>
-      {props.children}
+      {children}
     </div>
   );
 }
